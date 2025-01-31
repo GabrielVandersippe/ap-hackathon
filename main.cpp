@@ -1,6 +1,6 @@
 #include <iostream>
 #include "game.hpp"
-
+#include "hero.hpp"
 /// Affichage
 const int SCREEN_WIDTH = 30;
 const int SCREEN_HEIGHT = 30;
