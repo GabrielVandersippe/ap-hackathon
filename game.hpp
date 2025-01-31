@@ -90,8 +90,8 @@ public:
                 if (board[i][j] == TypeCase::HERO) {previous_row = i; previous_col = j;}
             }
         }
-        board[previous_row][previous_col] = hero.is_over();
-        hero.is_over() = board[hero.y][hero.x];
+        board[previous_row][previous_col] = hero.is_over;
+        hero.is_over = board[hero.y][hero.x];
         board[hero.y][hero.x] = TypeCase::HERO;
     } // actualise la position du hero
     void place_mob(mob mob) {} // TODOOOOOOOOOOOO
