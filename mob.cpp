@@ -5,5 +5,5 @@ int mob::get_x(){return this->x;};
 int mob::get_y(){return this->y;};
 
 
-snake::snake(int x, int y ): mob(x, y, 'S', 5){}
+//snake::snake(int x, int y ): mob(x, y, 'S', 5){}
 

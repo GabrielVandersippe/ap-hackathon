@@ -1,4 +1,6 @@
-class mob{
+#pragma once
+
+struct mob{
     private:
     int x; int y;
     char symbol;
@@ -9,7 +11,7 @@ class mob{
     int get_y ();
 };
 
-class snake:mob{
-    snake(int x, int y)
-    move
-}
+//struct snake :mob {
+//    snake(int x, int y);
+//        //move
+//};

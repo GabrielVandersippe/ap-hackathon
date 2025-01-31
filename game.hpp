@@ -1,3 +1,5 @@
+#pragma once
+
 #include<iostream>
 #include<vector>
 
@@ -7,7 +9,7 @@ enum class TypeCase {
     EMPTY,
     VERTIWALL,
     HORIWALL,
-    FLOR,
+    GROUND,
     GATE,
     CORRIDOR,
     STAIRS,
@@ -36,7 +38,7 @@ public:
                     case TypeCase::HORIWALL:
                         std::cout << '-';
                     break;
-                    case TypeCase::FLOR:
+                    case TypeCase::GROUND:
                         std::cout << '.';
                     break;
                     case TypeCase::GATE:
@@ -66,7 +68,7 @@ public:
     void create_room(int row, int col, int height, int width) {
         for (int i = row; i < col + height; i++) {
             for (int j = col; j < row + width; j++) {
-                board[i][j] = TypeCase::FLOR;
+                board[i][j] = TypeCase::GROUND;
             }
         }
         for (int i = row; i < col + height; i++) {
