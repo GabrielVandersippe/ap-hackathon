@@ -1,10 +1,13 @@
 #include "mob.hpp"
 #include "game.hpp"
+#include "hero.hpp"
+
 position::position(int x, int y):x(x), y(y){}; 
 position operator -(const position& p, const position& q){
     return position (p.x-q.x, p.y-q.y);
 };
-Board board;
+Board board;//A REMPLACER PAR LE VRAI PLATEAU (TODOOOOOO)
+Hero hero;//A REMPLACER PAR LE VRAI HERO (TODOOOOOO)
 bool alvaliable(const position& p){
     TypeCase My_case = board.get_case(p.y, p.x);
     return false;
@@ -16,10 +19,10 @@ int mob::get_x() const {return this->x;};
 int mob::get_y() const {return this->y;};
 
 
-//snake::snake(int x, int y ): mob(x, y, 'S', 5){}
+snake::snake(int x, int y ): mob(x, y, 'S', 5){}
 
 bool snake::move(){
-    int xp = get_player_x(); int yp = get_player_y();
+    int xp = hero.x; int yp = hero.y;
     int xd = xp-this->x; int yd = yp-this->y;
     if(xd<0&& alvaliable (position(this->x-1, this->y))){
         this->x--; return true;
