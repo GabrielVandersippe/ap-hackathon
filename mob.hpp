@@ -1,3 +1,5 @@
+#pragma once
+
 int get_player_y();// TODOOOOOO
 int get_player_x();// TODOOOOOO
 
