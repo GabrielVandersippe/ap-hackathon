@@ -8,6 +8,7 @@ const int SCREEN_HEIGHT = 30;
 
 
 int main(){
-    
+    Board board;
+    board.print_board();
     return 1;
 }
