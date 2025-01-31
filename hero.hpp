@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "objects.hpp"
 #include "game.hpp"
+#include "objects.hpp"
 
 struct Inventory {
 public :

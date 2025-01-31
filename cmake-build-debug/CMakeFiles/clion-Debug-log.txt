@@ -1,1 +1,13 @@
-CMakeLists.txt not found in /Users/coursinfo/CLionProjects/ap-hackathon Select CMakeLists.txt
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/coursinfo/CLionProjects/ap-hackathon -B /Users/coursinfo/CLionProjects/ap-hackathon/cmake-build-debug
+-- Configuring done (0.0s)
+CMake Error at CMakeLists.txt:8 (add_executable):
+  Cannot find source file:
+
+    game.cpp
+
+
+CMake Error at CMakeLists.txt:8 (add_executable):
+  No SOURCES given to target: ap_hackathon
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

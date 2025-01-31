@@ -1,0 +1,6 @@
+# ninja log v6
+1	66	1738329498603573700	build.ninja	382c7d6727aba861
+5	553	1738317779262626847	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
+0	202	1738315990399199920	CMakeFiles/ap_hackathon.dir/game.cpp.o	46b04dbce71f84c2
+553	653	1738317779810856223	ap_hackathon	95c55f95923f51b1
+11	87	1738329510996670404	CMakeFiles/ap_hackathon.dir/game.cpp.o	46b04dbce71f84c2

@@ -14,9 +14,9 @@ protected:
     char symbol;
     int PV;
     mob(int x0, int y0, char symbol, int PV);
-public:
-    int get_x() const;
-    int get_y() const;
+    public:
+    int get_x() const ;
+    int get_y() const ;
 };
 
 //struct snake :mob {
