@@ -1,0 +1,17 @@
+Index: game.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>enum class TypeCase {\n    EMPTY,\n    VERTIWALL,\n    HORIWALL,\n    FLOR,\n    GATE,\n    CORRIDOR,\n    HERO\n};\n\nclass Board {\n    const int nb_rows;\n    const int nb_cols;\n    std::vector<std::vector<TypeCase>> board;\npublic:\n    Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols) {}\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/game.hpp b/game.hpp
+--- a/game.hpp	(revision 7fe4361f154378ea24b1b59a5e3075cbb47f5c8f)
++++ b/game.hpp	(date 1738315287564)
+@@ -14,4 +14,5 @@
+     std::vector<std::vector<TypeCase>> board;
+ public:
+     Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols) {}
++    
+ };
+\ No newline at end of file

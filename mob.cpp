@@ -13,7 +13,7 @@ int mob::get_x() const {return this->x;};
 int mob::get_y() const {return this->y;};
 
 
-snake::snake(int x, int y ): mob(x, y, 'S', 5){}
+//snake::snake(int x, int y ): mob(x, y, 'S', 5){}
 
 bool snake::move(){
     int xp = get_player_x(); int yp = get_player_y();

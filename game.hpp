@@ -1,4 +1,5 @@
 #pragma once
+
 #include<iostream>
 #include<vector>
 #include "keyboard_event.hpp"
@@ -10,7 +11,7 @@ enum class TypeCase {
     EMPTY,
     VERTIWALL,
     HORIWALL,
-    FLOR,
+    GROUND,
     GATE,
     CORRIDOR,
     STAIRS,
@@ -39,7 +40,7 @@ public:
                     case TypeCase::HORIWALL:
                         std::cout << '-';
                     break;
-                    case TypeCase::FLOR:
+                    case TypeCase::GROUND:
                         std::cout << '.';
                     break;
                     case TypeCase::GATE:
@@ -69,7 +70,7 @@ public:
     void create_room(int row, int col, int height, int width) {
         for (int i = row; i < row + height; i++) {
             for (int j = col; j < col + width; j++) {
-                board[i][j] = TypeCase::FLOR;
+                board[i][j] = TypeCase::GROUND;
             }
         }
         for (int i = row; i < row + height + 1; i++) {
@@ -81,12 +82,18 @@ public:
             board[row + height][j] = TypeCase::HORIWALL;
         }
     }
-    void place_hero(int row, int col) {
-        board[row][col] = TypeCase::HERO;
-    }
-    void place_hero(Hero hero) {
-        place_hero(hero.y, hero.x);
-    }
+    void deplace_hero(Hero hero) {
+        int previous_row;
+        int previous_col;
+        for (int i=0;i<nb_rows;i++) {
+            for (int j=0;j<nb_cols;j++) {
+                if (board[i][j] == TypeCase::HERO) {previous_row = i; previous_col = j;}
+            }
+        }
+        board[previous_row][previous_col] = hero.is_over();
+        hero.is_over() = board[hero.y][hero.x];
+        board[hero.y][hero.x] = TypeCase::HERO;
+    } // actualise la position du hero
     void place_mob(mob mob) {} // TODOOOOOOOOOOOO
     TypeCase get_case(int row, int col) {
         return board[row][col];
