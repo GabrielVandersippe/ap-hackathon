@@ -17,6 +17,7 @@ int main(){
     board.initialize(&hero);
     board.print_board();
     while(game){
+        std::string message = "";
         std::cin >> input;
         if(input == 'p'){}
         else if(input == 's'){
@@ -25,7 +26,7 @@ int main(){
                 hero.y++;
             }
             else{
-                std::cout << "You try to walk into a wall and hurt your nose... (-1HP)" << std::endl;
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
                 hero.current_hp--;
             }
         }
@@ -35,7 +36,7 @@ int main(){
                 hero.x--;
             }
             else{
-                std::cout << "You try to walk into a wall and hurt your nose... (-1HP)" << std::endl;
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
                 hero.current_hp--;
             }
         }
@@ -45,7 +46,7 @@ int main(){
                 hero.y--;
             }
             else{
-                std::cout << "You try to walk into a wall and hurt your nose... (-1HP)" << std::endl;
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
                 hero.current_hp--;
             }
         }
@@ -55,12 +56,13 @@ int main(){
                 hero.x++;
             }
             else{
-                std::cout << "You try to walk into a wall and hurt your nose... (-1HP)" << std::endl;
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
                 hero.current_hp--;
             }
         }
         board.deplace_hero(hero);
         board.print_board();
+        std::printf("%s", message.c_str());
     }
     return EXIT_SUCCESS;
 }
