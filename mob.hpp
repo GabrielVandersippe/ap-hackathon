@@ -20,8 +20,8 @@ protected:
     int get_y() const ;
 };
 
-class snake:mob {
+class snake: public mob {
+    public:
     bool move(Hero hero, Board board);
-    public: 
     snake(int x, int y);
 };

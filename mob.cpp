@@ -9,7 +9,10 @@ position operator -(const position& p, const position& q){
 
 bool alvaliable(const position& p, Board board){
     TypeCase My_case = board.get_case(p.y, p.x);
-    return false;
+    bool c = false;
+    c = c || (My_case==TypeCase::GROUND);
+
+    return c;
 }
 
 mob::mob(int x0, int y0, char symbol, int PV):x(x0), y(y0), symbol(symbol), PV(PV){}
@@ -30,7 +33,7 @@ bool snake::move(Hero hero, Board board){
     } else if(yd<0&& alvaliable (position(this->x, this->y-1),board)){
         this->y--; return true;
     }else if (yd>0&& alvaliable (position(this->x, this->y+1),board)){
-        this->x++;return true;
+        this->y++;return true;
     }
     return false;
 }

@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include<vector>
+#include <array>
 #include "keyboard_event.hpp"
 #include "mob.hpp"
 #include "hero.hpp"
@@ -58,6 +59,9 @@ public:
                     break;
                     case TypeCase::HERO:
                         std::cout << '@';
+                    break;
+                    case TypeCase::MOB:
+                        std::cout << 'S';
                     break;
                 }
             }
@@ -125,6 +129,26 @@ public:
         board[hero.y][hero.x] = TypeCase::HERO;
     } // actualise la position du hero
     //void place_mob(mob mob) {} // TODOOOOOOOOOOOO
+    snake* initialize_snake(){
+        bool quit = false;
+        bool trouve = false;
+        is_overMob = TypeCase::GROUND;
+        for (int i = 0; i < nb_rows; i++) {
+            for (int j = 0; j < nb_cols; j++) {
+                if (board[i][j] == TypeCase::HERO) {
+                    trouve = true;
+                } if(board [i][j] == TypeCase::GROUND&&trouve){
+                    board[i][j] = TypeCase::MOB;
+                    snake* S = new snake(j,i);
+                    return S;
+                    quit = true;
+                }
+                if (quit) {break;}
+            }
+            if (quit) {break;}
+        }
+        return nullptr;
+    }
     void deplace_mob(mob& mob) {
         int previous_row;
         int previous_col;

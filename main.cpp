@@ -15,7 +15,10 @@ int main(){
     //backgroundClear();
     Hero hero("Brandon", 3, 3);
     board.initialize(&hero);
-    snake S = snake(2, 2);
+    snake* S = board.initialize_snake();
+    if (S == nullptr) {
+        std::cerr << "Failed to initialize snake." << std::endl;
+    }
     board.add_room();
     while(game){
         std::string message = "";
@@ -66,7 +69,9 @@ int main(){
             hero.showInventory();
         }
         board.deplace_hero(hero);
-        //board.deplace_mob(S);
+        board.deplace_mob(*S);
+        S->move(hero, board);
+        board.deplace_mob(*S);
         board.print_board();
         if(hero.current_hp <= 0){
             message.append("You died, maybe better luck next time !\n");
