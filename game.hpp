@@ -1,5 +1,7 @@
 #include<iostream>
 #include<vector>
+#include<hero.hpp>
+#include<keyboard_event.hpp>
 
 enum class TypeCase {
     EMPTY,
@@ -58,4 +60,15 @@ public:
             std::cout << std::endl;
         }
     }
-};
+}Board;
+
+void play_game(){
+    char key;
+    Hero hero("Brandon", 0, 0);
+    Board.print_board();
+    backgroundClear();
+    if(keyEvent){
+        std::cin >> key;
+        
+    }
+}
