@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "game.hpp"
 #include "objects.hpp"
 
 struct Object {

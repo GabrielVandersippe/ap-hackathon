@@ -2,6 +2,7 @@
 #include <string>
 #include "game.hpp"
 #include "hero.hpp"
+#include "InventoryManagment.hpp"
 /// Affichage
 const int SCREEN_WIDTH = 30;
 const int SCREEN_HEIGHT = 20;
@@ -61,12 +62,11 @@ int main(){
             }
         }
 
-        else if (input == 'i') {
-            hero.showInventory();
-        }
-        board.deplace_hero(hero);
-        board.print_board();
-        std::printf("%s", message.c_str());
+        if (input != 'i') {
+            board.deplace_hero(hero);
+            board.print_board();
+            std::printf("%s", message.c_str());
+        } else { openInventory(hero); }
         
     }
     return EXIT_SUCCESS;
