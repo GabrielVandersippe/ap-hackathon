@@ -61,13 +61,6 @@ public:
             std::cout << std::endl;
         }
     }
-    void initialize() {
-        for (int i = 0; i < nb_rows; i++) {
-            for (int j = 0; j < nb_cols; j++) {
-                board[i][j] = TypeCase::EMPTY;
-            }
-        }
-    }
     void create_room(int row, int col, int height, int width) {
         for (int i = row; i < row + height; i++) {
             for (int j = col; j < col + width; j++) {
@@ -83,7 +76,39 @@ public:
             board[row + height][j] = TypeCase::HORIWALL;
         }
     }
-    void deplace_hero(Hero hero) {
+    void random_room() {
+        srand(time(0));
+        int deb_row = rand() % (nb_rows-4);
+        int deb_col = rand() % (nb_cols-4);
+        int height = 3 + rand() % (nb_rows-3-deb_row);
+        int width = 3 + rand() % (nb_cols-3-deb_col);
+        create_room(deb_row, deb_col, height, width);
+    }
+    void initialize_empty() {
+        for (int i = 0; i < nb_rows; i++) {
+            for (int j = 0; j < nb_cols; j++) {
+                board[i][j] = TypeCase::EMPTY;
+            }
+        }
+    }
+    void initialize(Hero* hero){
+        initialize_empty();
+        random_room();
+        bool quit = false;
+        for (int i = 0; i < nb_rows; i++) {
+            for (int j = 0; j < nb_cols; j++) {
+                if (board[i][j] == TypeCase::GROUND) {
+                    hero->y = i;
+                    hero->x = j;
+                    board[i][j] = TypeCase::HERO;
+                    quit = true;
+                }
+                if (quit) {break;}
+            }
+            if (quit) {break;}
+        }
+    }
+    void deplace_hero(Hero& hero) {
         int previous_row;
         int previous_col;
         for (int i=0;i<nb_rows;i++) {
@@ -98,14 +123,6 @@ public:
     void place_mob(mob mob) {} // TODOOOOOOOOOOOO
     TypeCase get_case(const int & row, const int & col) {
         return board[row][col];
-    }
-    void random_room() {
-        srand(time(0));
-        int deb_row = rand() % (nb_rows-4);
-        int deb_col = rand() % (nb_cols-4);
-        int height = 3 + rand() % (nb_rows-3-deb_row);
-        int width = 3 + rand() % (nb_cols-3-deb_col);
-        create_room(deb_row, deb_col, height, width);
     }
 
 };
