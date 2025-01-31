@@ -66,6 +66,7 @@ int main(){
             hero.showInventory();
         }
         board.deplace_hero(hero);
+        //board.deplace_mob(S);
         board.print_board();
         if(hero.current_hp <= 0){
             message.append("You died, maybe better luck next time !\n");

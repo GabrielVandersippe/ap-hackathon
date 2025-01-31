@@ -15,13 +15,15 @@ enum class TypeCase {
     GATE,
     CORRIDOR,
     STAIRS,
-    HERO
+    HERO,
+    MOB
 };
 
 class Board {
     const int nb_rows;
     const int nb_cols;
     TypeCase is_over;
+    TypeCase is_overMob;
     std::vector<std::vector<TypeCase>> board;
 public:
     Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols), board(nb_rows, std::vector<TypeCase>(nb_cols)), is_over(TypeCase::GROUND) {}
@@ -121,6 +123,19 @@ public:
         board[hero.y][hero.x] = TypeCase::HERO;
     } // actualise la position du hero
     //void place_mob(mob mob) {} // TODOOOOOOOOOOOO
+    void deplace_mob(mob& mob) {
+        int previous_row;
+        int previous_col;
+        for (int i=0;i<nb_rows;i++) {
+            for (int j=0;j<nb_cols;j++) {
+                if (board[i][j] == TypeCase::MOB) {previous_row = i; previous_col = j;}
+            }
+        }
+        board[previous_row][previous_col] = is_overMob;
+        is_overMob = board[mob.get_y()][mob.get_x()];
+        board[mob.get_y()][mob.get_x()] = TypeCase::MOB;
+    }
+
     TypeCase get_case(const int & row, const int & col) {
         return board[row][col];
     }

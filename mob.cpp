@@ -1,5 +1,6 @@
 #include "mob.hpp"
 #include "game.hpp"
+#include "hero.hpp"
 
 position::position(int x, int y):x(x), y(y){}; 
 position operator -(const position& p, const position& q){

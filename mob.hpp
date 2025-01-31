@@ -1,6 +1,8 @@
 #pragma once
-#include "hero.hpp"
-#include "game.hpp"
+
+
+class Board; 
+class Hero;
 struct position {
     int x; int y;
     position(int x, int y);
