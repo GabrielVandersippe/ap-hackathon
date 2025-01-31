@@ -15,6 +15,7 @@ int main(){
     //backgroundClear();
     Hero hero("Brandon", 3, 3);
     board.initialize(&hero);
+    snake S = snake(2, 2);
     board.print_board();
     while(game){
         std::string message = "";

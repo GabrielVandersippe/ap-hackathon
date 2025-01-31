@@ -7,4 +7,5 @@ include_directories(.)
 
 add_executable(ap_hackathon
         game.hpp
-        main.cpp)
+        main.cpp
+        mob.cpp)
