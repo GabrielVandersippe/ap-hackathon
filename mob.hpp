@@ -19,7 +19,7 @@ public:
     int get_y() const;
 };
 
-//class snake :mob {
+//struct snake :mob {
 //    snake(int x, int y);
-//    bool move();
+//        //move
 //};
