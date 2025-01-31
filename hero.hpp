@@ -4,7 +4,7 @@
 #include "objects.hpp"
 
 struct Inventory {
-	
+public :
 	std::vector<Object> contents;
 	int max_size;
 
@@ -15,14 +15,30 @@ struct Inventory {
 		}
 	}
 
+	void add(Object obj) { contents.push_back(obj); }
+
+	void remove(int id) { contents.erase(contents.begin() + id); } //TODO : si l'objet est un "new...", il faut aussi le delete !!!!!!
+
 };
 
 struct Hero {
-
+private:
 	char symbol = '@';
 
+	std::string name;
+
+public:
 	int max_hp;
 	int current_hp;
 
-	Inventory* i;
+	int x;
+	int y;
+
+	Inventory* inventory;
+
+	Hero(std::string name, int start_x, int start_y) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
+		inventory->max_size = 4;
+		inventory->add()
+
+	}
 };

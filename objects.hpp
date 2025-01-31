@@ -18,8 +18,12 @@ struct Object {
 
 };
 
+struct Weapon : public Object {
+
+};
+
 struct Potion : public Object {
 
-	Potion() : Object(4, "Potion", "Glouglou c'est miam miam") {}
+	Potion(int r, std::string name, std::string desc) : Object(r, name, desc) {}
 	//Choses
 };
