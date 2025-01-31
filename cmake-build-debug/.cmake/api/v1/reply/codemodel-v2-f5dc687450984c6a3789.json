@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.29"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "ap_hackathon::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-ap_hackathon-Debug-3e3d2bcb87ea3a359fc1.json",
+					"jsonFile" : "target-ap_hackathon-Debug-3f16eb0adfab391bd16f.json",
 					"name" : "ap_hackathon",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/coursinfo/CLionProjects/ap-hackathon/cmake-build-debug",
-		"source" : "/Users/coursinfo/CLionProjects/ap-hackathon"
+		"build" : "C:/Users/rbarr/Documents/GitHub/ap-hackathon/cmake-build-debug",
+		"source" : "C:/Users/rbarr/Documents/GitHub/ap-hackathon"
 	},
 	"version" : 
 	{
