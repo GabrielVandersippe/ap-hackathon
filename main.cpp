@@ -16,7 +16,7 @@ int main(){
     Hero hero("Brandon", 3, 3);
     board.initialize(&hero);
     snake S = snake(2, 2);
-    board.print_board();
+    board.add_room();
     while(game){
         std::string message = "";
         std::cin >> input;

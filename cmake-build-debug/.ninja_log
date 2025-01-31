@@ -1,9 +1,3 @@
 # ninja log v6
 587	686	1738333071378594696	ap_hackathon	79ee3846e4a7affb
 2	53	7600397568430242	build.ninja	382c7d6727aba861
-14	1014	7600410271026193	CMakeFiles/ap_hackathon.dir/mob.cpp.obj	56449551833d3bc0
-4	1063	7600410270936195	CMakeFiles/ap_hackathon.dir/main.cpp.obj	9bb39e9293690ec1
-1063	1249	7600410281522575	ap_hackathon.exe	36e26bcc2eb74220
-21	930	7600418418160823	CMakeFiles/ap_hackathon.dir/mob.cpp.obj	56449551833d3bc0
-11	1022	7600418418055711	CMakeFiles/ap_hackathon.dir/main.cpp.obj	9bb39e9293690ec1
-1022	1199	7600418428168540	ap_hackathon.exe	36e26bcc2eb74220
