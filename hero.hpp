@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include "objects.hpp"
-//#include "game.hpp"
+#include "game.hpp"
 
 struct Inventory {
 public :
@@ -33,7 +33,7 @@ private:
 
 public:
 
-	//TypeCase is_over = TypeCase::GROUND;
+	TypeCase is_over = TypeCase::GROUND;
 
 	int max_hp;
 	int current_hp;
@@ -43,7 +43,7 @@ public:
 
 	Inventory* inventory;
 
-	Hero(std::string name, int start_x, int start_y, int inv_max_size) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
+	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
 		//inventory->max_size = inv_max_size;
 		inventory->add(Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2));
 	}
