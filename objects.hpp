@@ -1,14 +1,17 @@
 #include <string>
 #include <iostream>
-
+#include <random>
 
 struct Object {
 
 	int rarity;
 	std::string name;
 	std::string description;
+	bool consumable;
 
-	Object(int r, std::string n, std::string d) : rarity(r), name(n), description(d) {}
+	/*void virtual consume (Hero* h) = 0;*/
+
+	Object(int r, std::string n, std::string d, bool consumable) : rarity(r), name(n), description(d), consumable(consumable) {}
 
 	void show() {
 		std::cout << "> ";
@@ -20,10 +23,23 @@ struct Object {
 
 struct Weapon : public Object {
 
+	int damage;
+
+	//void consume(Hero* h) { h->current_hp = 0; }; //TODO : a changer (c'est juste un test)
+
+	Weapon(int r, std::string name, std::string desc,int damage) : Object(r, name, desc, false), damage(damage) {}
+	
 };
 
 struct Potion : public Object {
 
-	Potion(int r, std::string name, std::string desc) : Object(r, name, desc) {}
+	int healing_power; 
+
+	/*void consume(Hero* h) {
+		h->current_hp = std::max(h->max_hp, h->current_hp + healing_power);
+	}*/
+
+	Potion(int r, std::string name, std::string desc, int healing_power) : Object(r, name, desc, true), healing_power(healing_power) {}
 	//Choses
+	
 };

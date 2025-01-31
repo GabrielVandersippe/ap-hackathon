@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <string>
 #include "objects.hpp"
 
 struct Inventory {
@@ -38,7 +39,17 @@ public:
 
 	Hero(std::string name, int start_x, int start_y) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
 		inventory->max_size = 4;
-		inventory->add()
+		inventory->add(Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2));
+	}
 
+	void consume(int id) {
+		Object* obj = &inventory->contents[id];
+ 		if (!obj->consumable) std::cout << "This object cannot be consumed." << std::endl;
+		else {
+			/*obj->consume(this);*/
+			inventory->remove(id); //Faire compter cela comme une action et pas dans le cas où on ne consomme rien
+			//Idée: mettre la non-consommation comme effet de la fonction consume mais alors il faut faire savoir qu'on a rien fait.
+			
+		}
 	}
 };

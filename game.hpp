@@ -1,7 +1,12 @@
 #include<iostream>
 #include<vector>
-
-#include <iostream>
+#include<hero.hpp>
+#include<keyboard_event.hpp>
+#include <__random/random_device.h>
+#include "mob.hpp"
+#include "objects.hpp"
+#include "hero.hpp"
+#include <random>
 
 enum class TypeCase {
     EMPTY,
@@ -46,7 +51,7 @@ public:
                         std::cout << '#';
                     break;
                     case TypeCase::STAIRS:
-                        std::cout << '*';
+                        std::cout << '=';
                     break;
                     case TypeCase::HERO:
                         std::cout << '@';
@@ -64,16 +69,16 @@ public:
         }
     }
     void create_room(int row, int col, int height, int width) {
-        for (int i = row; i < col + height; i++) {
-            for (int j = col; j < row + width; j++) {
+        for (int i = row; i < row + height; i++) {
+            for (int j = col; j < col + width; j++) {
                 board[i][j] = TypeCase::FLOR;
             }
         }
-        for (int i = row; i < col + height; i++) {
+        for (int i = row; i < row + height + 1; i++) {
             board[i][col] = TypeCase::VERTIWALL;
             board[i][col + width] = TypeCase::VERTIWALL;
         }
-        for (int j = col; j < row + width + 1; j++) {
+        for (int j = col; j < col + width + 1; j++) {
             board[row][j] = TypeCase::HORIWALL;
             board[row + height][j] = TypeCase::HORIWALL;
         }
@@ -81,4 +86,19 @@ public:
     void place_hero(int row, int col) {
         board[row][col] = TypeCase::HERO;
     }
+    void place_hero(Hero hero) {
+        place_hero(hero.y, hero.x);
+    }
+    void place_mob(mob mob) {} // TODOOOOOOOOOOOO
+    TypeCase get_case(int row, int col) {
+        return board[row][col];
+    }
+    void random_room() {
+        int deb_row = rand() % (nb_rows-4);
+        int deb_col = rand() % (nb_cols-4);
+        int height = rand() % (nb_rows-4-deb_row);
+        int width = rand() % (nb_cols-4-deb_col);
+        create_room(deb_row, deb_col, height, width);
+    }
+
 };
