@@ -18,7 +18,7 @@ struct Object {
 
 	void show() {
 		std::cout << "> ";
-		for (int i = 0; i < rarity; i++) std::cout << '*';
+		for (int i = 0; i < rarity; i++) { std::cout << '*'; }
 		std::cout << " : " << name << std::endl;
 	}
 
@@ -48,19 +48,19 @@ struct Potion : public Object {
 
 struct Inventory {
 public :
-	std::vector<Object> contents;
+	std::vector<Object*> contents;
 	int max_size;
 
 	Inventory(int max_size) : max_size(max_size) {}
 
 	void showInventory() {
 		for (int i = 0; i < contents.size(); i++) {
-			contents[i].show();
+			contents[i]->show();
 			std::cout << std::endl;
 		}
 	}
 
-	void add(Object obj) { contents.push_back(obj); }
+	void add(Object* obj) { contents.push_back(obj); }
 
 	void remove(int id) { contents.erase(contents.begin() + id); } //TODO : si l'objet est un "new...", il faut aussi le delete !!!!!!
 
@@ -83,13 +83,15 @@ public:
 	Inventory* inventory;
 
 	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
-		Inventory inv(inv_max_size);
-		inventory = &inv;
-		inventory->add(Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2));
+		Inventory* inv = new Inventory(inv_max_size);
+		inventory = inv;
+		std::cout << inventory->contents.size();
+		Weapon* weapon = new Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2);
+		inventory->add(weapon);
 	}
 
 	void consume(int id) {
-		Object* obj = &inventory->contents[id];
+		Object* obj = inventory->contents[id];
  		if (!obj->consumable) std::cout << "This object cannot be consumed." << std::endl;
 		else {
 			/*obj->consume(this);*/
@@ -97,6 +99,12 @@ public:
 			//Idee: mettre la non-consommation comme effet de la fonction consume mais alors il faut faire savoir qu'on a rien fait.
 			
 		}
+	}
+
+	void showInventory()
+	{
+		std::cout << " ~ " << name << "'s Inventory : ~ \n" << std::endl;
+		inventory->showInventory();
 	}
 };
 

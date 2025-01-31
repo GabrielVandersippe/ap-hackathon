@@ -49,6 +49,10 @@ int main(){
                 hero.x++;
             };
         }
+
+        else if (input == 'i') {
+            hero.showInventory();
+        }
     }
     return EXIT_SUCCESS;
 }
