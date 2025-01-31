@@ -13,8 +13,9 @@ int main(){
     char input;
     Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
     //backgroundClear();
-    Hero hero("Brandon", 3, 10);
-    board.initialize(hero);
+    Hero hero("Brandon", 3, 3);
+    board.initialize(&hero);
+    board.print_board();
     while(game){
         board.deplace_hero(hero);
         board.print_board();

@@ -91,14 +91,15 @@ public:
             }
         }
     }
-    void initialize(Hero& hero){
+    void initialize(Hero* hero){
         initialize_empty();
         random_room();
         bool quit = false;
         for (int i = 0; i < nb_rows; i++) {
             for (int j = 0; j < nb_cols; j++) {
                 if (board[i][j] == TypeCase::GROUND) {
-                    hero.y, hero.x = i, j;
+                    hero->y = i;
+                    hero->x = j;
                     board[i][j] = TypeCase::HERO;
                     quit = true;
                 }
