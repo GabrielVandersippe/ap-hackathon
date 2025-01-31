@@ -33,8 +33,6 @@ private:
 
 public:
 
-	TypeCase is_over = TypeCase::GROUND;
-
 	int max_hp;
 	int current_hp;
 

@@ -49,13 +49,6 @@ cmake_ninja_workdir = /Users/coursinfo/CLionProjects/ap-hackathon/cmake-build-de
 
 build cmake_object_order_depends_target_ap_hackathon: phony || .
 
-build CMakeFiles/ap_hackathon.dir/game.cpp.o: CXX_COMPILER__ap_hackathon_unscanned_Debug /Users/coursinfo/CLionProjects/ap-hackathon/game.cpp || cmake_object_order_depends_target_ap_hackathon
-  DEP_FILE = CMakeFiles/ap_hackathon.dir/game.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/coursinfo/CLionProjects/ap-hackathon/.
-  OBJECT_DIR = CMakeFiles/ap_hackathon.dir
-  OBJECT_FILE_DIR = CMakeFiles/ap_hackathon.dir
-
 build CMakeFiles/ap_hackathon.dir/main.cpp.o: CXX_COMPILER__ap_hackathon_unscanned_Debug /Users/coursinfo/CLionProjects/ap-hackathon/main.cpp || cmake_object_order_depends_target_ap_hackathon
   DEP_FILE = CMakeFiles/ap_hackathon.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -fcolor-diagnostics
@@ -71,7 +64,7 @@ build CMakeFiles/ap_hackathon.dir/main.cpp.o: CXX_COMPILER__ap_hackathon_unscann
 #############################################
 # Link the executable ap_hackathon
 
-build ap_hackathon: CXX_EXECUTABLE_LINKER__ap_hackathon_Debug CMakeFiles/ap_hackathon.dir/game.cpp.o CMakeFiles/ap_hackathon.dir/main.cpp.o
+build ap_hackathon: CXX_EXECUTABLE_LINKER__ap_hackathon_Debug CMakeFiles/ap_hackathon.dir/main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk
   OBJECT_DIR = CMakeFiles/ap_hackathon.dir
   POST_BUILD = :
