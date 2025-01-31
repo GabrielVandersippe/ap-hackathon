@@ -23,6 +23,7 @@ class Board {
     const int nb_cols;
     TypeCase is_over;
     std::vector<std::vector<TypeCase>> board;
+    std::vector<std::array<int, 4>> rooms;
 public:
     Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols), board(nb_rows, std::vector<TypeCase>(nb_cols)), is_over(TypeCase::GROUND) {}
     void change_case(int row, int col, TypeCase new_case) {
@@ -78,11 +79,12 @@ public:
     }
     void random_room() {
         srand(time(0));
-        int deb_row = rand() % (nb_rows-4);
-        int deb_col = rand() % (nb_cols-4);
-        int height = 3 + rand() % (nb_rows-3-deb_row);
-        int width = 3 + rand() % (nb_cols-3-deb_col);
+        int deb_row = rand() % (nb_rows/4);
+        int deb_col = rand() % (nb_cols/4);
+        int height = 4 + rand() % (nb_rows/2-deb_row - 5);
+        int width = 4 + rand() % (nb_cols/2-deb_col - 5);
         create_room(deb_row, deb_col, height, width);
+        rooms.push_back({deb_row, deb_col, height, width});
     }
     void initialize_empty() {
         for (int i = 0; i < nb_rows; i++) {
@@ -124,5 +126,58 @@ public:
     TypeCase get_case(const int & row, const int & col) {
         return board[row][col];
     }
+    bool is_in_the_room(int room_row, int room_col, int room_height, int room_width, int object_row, int object_col) {
+        return (room_row <= object_row && object_row <= room_row + room_height) && (room_col <= object_col && object_col <= room_col + room_width);
+    }
+    bool is_in_the_room(std::array<int, 4> room, int object_row, int object_col) {
+        return is_in_the_room(room[0], room[1], room[2], room[3], object_row, object_col);
+    }
+    void add_room(bool on_rows = true) {
+        int min_bool = INT_MAX;
+        int deb_row;
+        int deb_col;
+        srand(time(0));
+        if (on_rows) {
+            for (std::array<int, 4> room : rooms) {
+                min_bool = std::min(min_bool, room[0]+room[2]);
+            }
+            deb_row = min_bool + 2 + rand() % (nb_rows/2-min_bool);
+            deb_col = rand() % (nb_cols-5);
+        } else {
+            for (std::array<int, 4> room : rooms) {
+                min_bool = std::min(min_bool, room[1]+room[3]);
+            }
+            deb_row = rand() % (nb_rows-5);
+            deb_col = min_bool + 2 + rand() % (nb_cols/2-min_bool);
+        }
+        int height = 4 + rand() % (nb_rows/2-deb_row-5);
+        int width = 4 + rand() % (nb_cols/2-deb_col-5);
+        create_room(deb_row,deb_col, height, width);
 
+        int gate1_row = rooms.back()[0] + rooms.back()[2];
+        int gate1_col = rooms.back()[1] + 1 + rand() % (rooms.back()[3]-1);
+        change_case(gate1_row, gate1_col, TypeCase::GATE);
+        int gate2_row = deb_row;
+        int gate2_col = deb_col + 1 + rand() % (width-1);
+        change_case(gate2_row, gate2_col, TypeCase::GATE);
+
+        for (int i = gate1_row+1; i < gate2_row; i++) {
+            change_case(i, gate1_col, TypeCase::CORRIDOR);
+        }
+        int epsilon = (gate1_col <= gate2_col) ? 1 : -1;
+        switch (epsilon) {
+            case 1:
+                for (int i = gate1_col+1; i <= gate2_col ; i = i + epsilon) {
+                    change_case(gate2_row-1, i, TypeCase::CORRIDOR);
+                }
+            break;
+            case -1:
+                for (int i = gate1_col-1;  i >= gate2_col ; i = i + epsilon) {
+                    change_case(gate2_row-1, i, TypeCase::CORRIDOR);
+                }
+        }
+
+        rooms.push_back({deb_row, deb_col, height, width});
+
+    }
 };
