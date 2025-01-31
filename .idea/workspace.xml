@@ -28,15 +28,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ed0dacb-850b-4fd5-9c79-e82223ec254b" name="Changes" comment="initialisation cool v2">
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ap_hackathon.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ap_hackathon.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ap_hackathon" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ap_hackathon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/game.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="6ed0dacb-850b-4fd5-9c79-e82223ec254b" name="Changes" comment="deux pièces !!!!!!!!! (faut redémarrer des fois par contre)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -805,7 +797,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738311621529</updated>
       <workItem from="1738311622613" duration="11809000" />
-      <workItem from="1738329490377" duration="9287000" />
+      <workItem from="1738329490377" duration="9694000" />
     </task>
     <task id="LOCAL-00001" summary="test1">
       <option name="closed" value="true" />
@@ -959,7 +951,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738333096448</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="deux pièces !!!!!!!!! (faut redémarrer des fois par contre)">
+      <option name="closed" value="true" />
+      <created>1738338873358</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1738338873358</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1018,7 +1018,8 @@
     <MESSAGE value="ça run pour moi la la la la v2" />
     <MESSAGE value="initialisation cool" />
     <MESSAGE value="initialisation cool v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="initialisation cool v2" />
+    <MESSAGE value="deux pièces !!!!!!!!! (faut redémarrer des fois par contre)" />
+    <option name="LAST_COMMIT_MESSAGE" value="deux pièces !!!!!!!!! (faut redémarrer des fois par contre)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1030,7 +1031,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/game.hpp</url>
-          <line>151</line>
+          <line>162</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>

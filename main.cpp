@@ -8,7 +8,6 @@ const int SCREEN_WIDTH = 30;
 const int SCREEN_HEIGHT = 20;
 
 
-
 int main(){
     bool game = true;
     char input;
@@ -18,6 +17,7 @@ int main(){
     board.initialize(&hero);
     snake S = snake(2, 2);
     board.add_room();
+    board.print_board();
     while(game){
         std::string message = "";
         std::cin >> input;
