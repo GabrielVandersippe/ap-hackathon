@@ -4,7 +4,6 @@
 #include<vector>
 #include "keyboard_event.hpp"
 #include "mob.hpp"
-#include "objects.hpp"
 #include "hero.hpp"
 #include <random>
 

@@ -17,22 +17,20 @@ int main(){
     board.print_board();
     Hero hero("Brandon", 3, 3);
     while(game){
-        if(keyEvent()){
-            std::cin >> input;
-            if(input == 'p'){}
-            else if(input == 'z'){
-                hero.y++;
-            }
-            else if(input == 'q'){
-                hero.x--;
-            }
-            else if(input == 's'){
-                hero.y--;
-            }
-            else if(input == 'd'){
-                hero.x++;
-            }
+        std::cin >> input;
+        if(input == 'p'){}
+        else if(input == 'z'){
+            hero.y++;
+        }
+        else if(input == 'q'){
+            hero.x--;
+        }
+        else if(input == 's'){
+            hero.y--;
+        }
+        else if(input == 'd'){
+            hero.x++;
         }
     }
-    return 1;
+    return EXIT_SUCCESS;
 }
