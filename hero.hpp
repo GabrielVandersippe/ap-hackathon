@@ -82,7 +82,7 @@ public:
 
 	Inventory* inventory;
 
-	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
+	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(5), max_hp(5), x(start_x), y(start_y) {
 		Inventory inv(inv_max_size);
 		inventory = &inv;
 		inventory->add(Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2));
