@@ -16,7 +16,8 @@ int main(){
     //backgroundClear();
     Hero hero("Brandon", 3, 3);
     board.initialize(&hero);
-    board.print_board();
+    snake S = snake(2, 2);
+    board.add_room();
     while(game){
         std::string message = "";
         std::cin >> input;
@@ -62,11 +63,17 @@ int main(){
             }
         }
 
-        if (input != 'i') {
-            board.deplace_hero(hero);
-            board.print_board();
-            std::printf("%s", message.c_str());
-        } else { openInventory(hero); }
+        else if (input == 'i') {
+            hero.showInventory();
+        }
+        board.deplace_hero(hero);
+        //board.deplace_mob(S);
+        board.print_board();
+        if(hero.current_hp <= 0){
+            message.append("You died, maybe better luck next time !\n");
+            game = false;
+        }
+        std::printf("%s", message.c_str());
         
     }
     return EXIT_SUCCESS;

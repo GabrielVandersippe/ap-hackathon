@@ -81,7 +81,7 @@ public:
 
 	Inventory* inventory;
 
-	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
+	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(5), max_hp(5), x(start_x), y(start_y) {
 		Inventory* inv = new Inventory(inv_max_size);
 		inventory = inv;
 		std::cout << inventory->contents.size();
