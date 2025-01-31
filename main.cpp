@@ -61,9 +61,18 @@ int main(){
                 hero.current_hp--;
             }
         }
+
+        else if (input == 'i') {
+            hero.showInventory();
+        }
         board.deplace_hero(hero);
         board.print_board();
+        if(hero.current_hp <= 0){
+            message.append("You died, maybe better luck next time !\n");
+            game = false;
+        }
         std::printf("%s", message.c_str());
+        
     }
     return EXIT_SUCCESS;
 }
