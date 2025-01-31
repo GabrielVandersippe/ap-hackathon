@@ -1,0 +1,46 @@
+Index: game.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include<iostream>\n#include<vector>\n#include<hero.hpp>\n#include<keyboard_event.hpp>\n#include <__random/random_device.h>\n#include \"mob.hpp\"\n#include \"objects.hpp\"\n#include \"hero.hpp\"\n#include <random>\n\nenum class TypeCase {\n    EMPTY,\n    VERTIWALL,\n    HORIWALL,\n    FLOR,\n    GATE,\n    CORRIDOR,\n    STAIRS,\n    HERO\n};\n\nclass Board {\n    const int nb_rows;\n    const int nb_cols;\n    std::vector<std::vector<TypeCase>> board;\npublic:\n    Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols), board(nb_rows, std::vector<TypeCase>(nb_cols)) {}\n    void change_case(int row, int col, TypeCase new_case) {\n        board[row][col] = new_case;\n    }\n    void print_board() const {\n        for (int i = 0; i < nb_rows; i++) {\n            for (int j = 0; j < nb_cols; j++) {\n                switch (board[i][j]) {\n                    case TypeCase::EMPTY:\n                        std::cout << ' ';\n                    break;\n                    case TypeCase::VERTIWALL:\n                        std::cout << '|';\n                    break;\n                    case TypeCase::HORIWALL:\n                        std::cout << '-';\n                    break;\n                    case TypeCase::FLOR:\n                        std::cout << '.';\n                    break;\n                    case TypeCase::GATE:\n                        std::cout << '+';\n                    break;\n                    case TypeCase::CORRIDOR:\n                        std::cout << '#';\n                    break;\n                    case TypeCase::STAIRS:\n                        std::cout << '=';\n                    break;\n                    case TypeCase::HERO:\n                        std::cout << '@';\n                    break;\n                }\n            }\n            std::cout << std::endl;\n        }\n    }\n    void initialize() {\n        for (int i = 0; i < nb_rows; i++) {\n            for (int j = 0; j < nb_cols; j++) {\n                board[i][j] = TypeCase::EMPTY;\n            }\n        }\n    }\n    void create_room(int row, int col, int height, int width) {\n        for (int i = row; i < row + height; i++) {\n            for (int j = col; j < col + width; j++) {\n                board[i][j] = TypeCase::FLOR;\n            }\n        }\n        for (int i = row; i < row + height + 1; i++) {\n            board[i][col] = TypeCase::VERTIWALL;\n            board[i][col + width] = TypeCase::VERTIWALL;\n        }\n        for (int j = col; j < col + width + 1; j++) {\n            board[row][j] = TypeCase::HORIWALL;\n            board[row + height][j] = TypeCase::HORIWALL;\n        }\n    }\n    void place_hero(int row, int col) {\n        board[row][col] = TypeCase::HERO;\n    }\n    void place_hero(Hero hero) {\n        place_hero(hero.y, hero.x);\n    }\n    void place_mob(mob mob) {} // TODOOOOOOOOOOOO\n    TypeCase get_case(int row, int col) {\n        return board[row][col];\n    }\n    void random_room() {\n        int deb_row = rand() % (nb_rows-4);\n        int deb_col = rand() % (nb_cols-4);\n        int height = 3 + rand() % (nb_rows-3-deb_row);\n        int width = 3 + rand() % (nb_cols-3-deb_col);\n        create_room(deb_row, deb_col, height, width);\n    }\n\n};\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/game.hpp b/game.hpp
+--- a/game.hpp	(revision 5b3f768db0305765b07fc12e862bdc49baac1ac0)
++++ b/game.hpp	(date 1738328017122)
+@@ -12,7 +12,7 @@
+     EMPTY,
+     VERTIWALL,
+     HORIWALL,
+-    FLOR,
++    GROUND,
+     GATE,
+     CORRIDOR,
+     STAIRS,
+@@ -41,7 +41,7 @@
+                     case TypeCase::HORIWALL:
+                         std::cout << '-';
+                     break;
+-                    case TypeCase::FLOR:
++                    case TypeCase::GROUND:
+                         std::cout << '.';
+                     break;
+                     case TypeCase::GATE:
+@@ -71,7 +71,7 @@
+     void create_room(int row, int col, int height, int width) {
+         for (int i = row; i < row + height; i++) {
+             for (int j = col; j < col + width; j++) {
+-                board[i][j] = TypeCase::FLOR;
++                board[i][j] = TypeCase::GROUND;
+             }
+         }
+         for (int i = row; i < row + height + 1; i++) {
+@@ -88,7 +88,7 @@
+     }
+     void place_hero(Hero hero) {
+         place_hero(hero.y, hero.x);
+-    }
++    } ///////////////// ATTENTION enlever le hero déjà présent
+     void place_mob(mob mob) {} // TODOOOOOOOOOOOO
+     TypeCase get_case(int row, int col) {
+         return board[row][col];

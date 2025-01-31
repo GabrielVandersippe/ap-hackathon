@@ -1,0 +1,150 @@
+Index: main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\n#include \"game.hpp\"\n\n/// Affichage\nconst int SCREEN_WIDTH = 30;\nconst int SCREEN_HEIGHT = 30;\n\n\n\nint main(){\n    Board board;\n    board.print_board();\n    return 1;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.cpp b/main.cpp
+--- a/main.cpp	(revision 9946f546463a06623ad9527436b87d9b21128e4c)
++++ b/main.cpp	(date 1738317372888)
+@@ -8,7 +8,9 @@
+ 
+ 
+ int main(){
+-    Board board;
++    Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
++    board.initialize();
++    board.create_room(2,2,4,5);
+     board.print_board();
+     return 1;
+ }
+\ No newline at end of file
+Index: game.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>enum class TypeCase {\n    EMPTY,\n    VERTIWALL,\n    HORIWALL,\n    FLOR,\n    GATE,\n    CORRIDOR,\n    STAIRS,\n    HERO\n};\n\nstd::vector<std::vector<TypeCase>> starting_board = {{TypeCase::EMPTY, TypeCase::VERTIWALL, TypeCase::HORIWALL,},\n{TypeCase::FLOR, TypeCase::HERO, TypeCase::STAIRS}};\n\n\nclass Board {\n    const int nb_rows;\n    const int nb_cols;\n    std::vector<std::vector<TypeCase>> board;\npublic:\n    Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(starting_board.size()), nb_cols(starting_board[0].size()), board(starting_board) {}\n    void change_case(int row, int col, TypeCase new_case) {\n        board[row][col] = new_case;\n    }\n    void print_board() const {\n        for (int i = 0; i < nb_rows; i++) {\n            for (int j = 0; j < nb_cols; j++) {\n                switch (board[i][j]) {\n                    case TypeCase::EMPTY:\n                        std::cout << ' ';\n                    break;\n                    case TypeCase::VERTIWALL:\n                        std::cout << '|';\n                    break;\n                    case TypeCase::HORIWALL:\n                        std::cout << '_';\n                    break;\n                    case TypeCase::FLOR:\n                        std::cout << '.';\n                    break;\n                    case TypeCase::GATE:\n                        std::cout << '+';\n                    break;\n                    case TypeCase::CORRIDOR:\n                        std::cout << '#';\n                    break;\n                    case TypeCase::STAIRS:\n                        std::cout << '*';\n                    break;\n                    case TypeCase::HERO:\n                        std::cout << '@';\n                    break;\n                }\n            }\n            std::cout << std::endl;\n        }\n    }\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/game.hpp b/game.hpp
+--- a/game.hpp	(revision 9946f546463a06623ad9527436b87d9b21128e4c)
++++ b/game.hpp	(date 1738317779115)
+@@ -1,3 +1,5 @@
++#include <iostream>
++
+ enum class TypeCase {
+     EMPTY,
+     VERTIWALL,
+@@ -9,16 +11,12 @@
+     HERO
+ };
+ 
+-std::vector<std::vector<TypeCase>> starting_board = {{TypeCase::EMPTY, TypeCase::VERTIWALL, TypeCase::HORIWALL,},
+-{TypeCase::FLOR, TypeCase::HERO, TypeCase::STAIRS}};
+-
+-
+ class Board {
+     const int nb_rows;
+     const int nb_cols;
+     std::vector<std::vector<TypeCase>> board;
+ public:
+-    Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(starting_board.size()), nb_cols(starting_board[0].size()), board(starting_board) {}
++    Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols), board(nb_rows, std::vector<TypeCase>(nb_cols)) {}
+     void change_case(int row, int col, TypeCase new_case) {
+         board[row][col] = new_case;
+     }
+@@ -33,7 +31,7 @@
+                         std::cout << '|';
+                     break;
+                     case TypeCase::HORIWALL:
+-                        std::cout << '_';
++                        std::cout << '-';
+                     break;
+                     case TypeCase::FLOR:
+                         std::cout << '.';
+@@ -55,4 +53,29 @@
+             std::cout << std::endl;
+         }
+     }
++    void initialize() {
++        for (int i = 0; i < nb_rows; i++) {
++            for (int j = 0; j < nb_cols; j++) {
++                board[i][j] = TypeCase::EMPTY;
++            }
++        }
++    }
++    void create_room(int row, int col, int height, int width) {
++        for (int i = row; i < col + height; i++) {
++            for (int j = col; j < row + width; j++) {
++                board[i][j] = TypeCase::FLOR;
++            }
++        }
++        for (int i = row; i < col + height; i++) {
++            board[i][col] = TypeCase::VERTIWALL;
++            board[i][col + width] = TypeCase::VERTIWALL;
++        }
++        for (int j = col; j < row + width + 1; j++) {
++            board[row][j] = TypeCase::HORIWALL;
++            board[row + height][j] = TypeCase::HORIWALL;
++        }
++    }
++    void place_hero(int row, int col) {
++        board[row][col] = TypeCase::HERO;
++    }
+ };
+\ No newline at end of file
+Index: cmake-build-debug/.ninja_log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># ninja log v6\n1\t66\t1738315990391084980\tbuild.ninja\t382c7d6727aba861\n0\t202\t1738315990399199920\tCMakeFiles/ap_hackathon.dir/game.cpp.o\t46b04dbce71f84c2\n0\t605\t1738315990399386002\tCMakeFiles/ap_hackathon.dir/main.cpp.o\t293cfe9b0f660693\n607\t729\t1738315991006068621\tap_hackathon\t95c55f95923f51b1\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/.ninja_log b/cmake-build-debug/.ninja_log
+--- a/cmake-build-debug/.ninja_log	(revision 9946f546463a06623ad9527436b87d9b21128e4c)
++++ b/cmake-build-debug/.ninja_log	(date 1738317779911)
+@@ -3,3 +3,27 @@
+ 0	202	1738315990399199920	CMakeFiles/ap_hackathon.dir/game.cpp.o	46b04dbce71f84c2
+ 0	605	1738315990399386002	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
+ 607	729	1738315991006068621	ap_hackathon	95c55f95923f51b1
++4	690	1738316710711881109	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++690	829	1738316711398004849	ap_hackathon	95c55f95923f51b1
++5	462	1738316990001780421	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++462	583	1738316990458723388	ap_hackathon	95c55f95923f51b1
++4	555	1738317127900371409	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++555	653	1738317128450866975	ap_hackathon	95c55f95923f51b1
++5	546	1738317325097111708	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++546	641	1738317325637706742	ap_hackathon	95c55f95923f51b1
++4	291	1738317353307211083	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++291	326	1738317353593780725	ap_hackathon	95c55f95923f51b1
++5	343	1738317373046557645	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++343	377	1738317373384499020	ap_hackathon	95c55f95923f51b1
++4	867	1738317512529605222	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++867	993	1738317513391991174	ap_hackathon	95c55f95923f51b1
++5	600	1738317624713336249	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++600	721	1738317625308974458	ap_hackathon	95c55f95923f51b1
++4	533	1738317662731234685	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++533	631	1738317663260792318	ap_hackathon	95c55f95923f51b1
++12	544	1738317739777373091	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++544	644	1738317740309459903	ap_hackathon	95c55f95923f51b1
++4	392	1738317758142219650	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++392	427	1738317758529702592	ap_hackathon	95c55f95923f51b1
++5	553	1738317779262626847	CMakeFiles/ap_hackathon.dir/main.cpp.o	293cfe9b0f660693
++553	653	1738317779810856223	ap_hackathon	95c55f95923f51b1
+Index: cmake-build-debug/Testing/Temporary/LastTest.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Start testing: Jan 31 10:33 CET\n----------------------------------------------------------\nEnd testing: Jan 31 10:33 CET\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/Testing/Temporary/LastTest.log b/cmake-build-debug/Testing/Temporary/LastTest.log
+--- a/cmake-build-debug/Testing/Temporary/LastTest.log	(revision 9946f546463a06623ad9527436b87d9b21128e4c)
++++ b/cmake-build-debug/Testing/Temporary/LastTest.log	(date 1738317779953)
+@@ -1,3 +1,3 @@
+-Start testing: Jan 31 10:33 CET
++Start testing: Jan 31 11:02 CET
+ ----------------------------------------------------------
+-End testing: Jan 31 10:33 CET
++End testing: Jan 31 11:02 CET

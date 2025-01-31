@@ -1,0 +1,120 @@
+Index: main.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\n#include \"game.hpp\"\n\n/// Affichage\nconst int SCREEN_WIDTH = 30;\nconst int SCREEN_HEIGHT = 30;\n\n\n\nint main(){\n    Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);\n    board.initialize();\n    board.create_room(2,2,4,5);\n    board.print_board();\n    return 1;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.cpp b/main.cpp
+--- a/main.cpp	(revision 64c236e76fa2220b60864403d0b92db7cdc9ae62)
++++ b/main.cpp	(date 1738319442829)
+@@ -3,14 +3,14 @@
+ 
+ /// Affichage
+ const int SCREEN_WIDTH = 30;
+-const int SCREEN_HEIGHT = 30;
++const int SCREEN_HEIGHT = 20;
+ 
+ 
+ 
+ int main(){
+     Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
+     board.initialize();
+-    board.create_room(2,2,4,5);
++    board.random_room();
+     board.print_board();
+     return 1;
+ }
+\ No newline at end of file
+Index: game.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include<iostream>\n#include<vector>\n\n#include <iostream>\n\nenum class TypeCase {\n    EMPTY,\n    VERTIWALL,\n    HORIWALL,\n    FLOR,\n    GATE,\n    CORRIDOR,\n    STAIRS,\n    HERO\n};\n\nclass Board {\n    const int nb_rows;\n    const int nb_cols;\n    std::vector<std::vector<TypeCase>> board;\npublic:\n    Board(int nb_rows = 30, int nb_cols = 30) : nb_rows(nb_rows), nb_cols(nb_cols), board(nb_rows, std::vector<TypeCase>(nb_cols)) {}\n    void change_case(int row, int col, TypeCase new_case) {\n        board[row][col] = new_case;\n    }\n    void print_board() const {\n        for (int i = 0; i < nb_rows; i++) {\n            for (int j = 0; j < nb_cols; j++) {\n                switch (board[i][j]) {\n                    case TypeCase::EMPTY:\n                        std::cout << ' ';\n                    break;\n                    case TypeCase::VERTIWALL:\n                        std::cout << '|';\n                    break;\n                    case TypeCase::HORIWALL:\n                        std::cout << '-';\n                    break;\n                    case TypeCase::FLOR:\n                        std::cout << '.';\n                    break;\n                    case TypeCase::GATE:\n                        std::cout << '+';\n                    break;\n                    case TypeCase::CORRIDOR:\n                        std::cout << '#';\n                    break;\n                    case TypeCase::STAIRS:\n                        std::cout << '*';\n                    break;\n                    case TypeCase::HERO:\n                        std::cout << '@';\n                    break;\n                }\n            }\n            std::cout << std::endl;\n        }\n    }\n    void initialize() {\n        for (int i = 0; i < nb_rows; i++) {\n            for (int j = 0; j < nb_cols; j++) {\n                board[i][j] = TypeCase::EMPTY;\n            }\n        }\n    }\n    void create_room(int row, int col, int height, int width) {\n        for (int i = row; i < col + height; i++) {\n            for (int j = col; j < row + width; j++) {\n                board[i][j] = TypeCase::FLOR;\n            }\n        }\n        for (int i = row; i < col + height; i++) {\n            board[i][col] = TypeCase::VERTIWALL;\n            board[i][col + width] = TypeCase::VERTIWALL;\n        }\n        for (int j = col; j < row + width + 1; j++) {\n            board[row][j] = TypeCase::HORIWALL;\n            board[row + height][j] = TypeCase::HORIWALL;\n        }\n    }\n    void place_hero(int row, int col) {\n        board[row][col] = TypeCase::HERO;\n    }\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/game.hpp b/game.hpp
+--- a/game.hpp	(revision 64c236e76fa2220b60864403d0b92db7cdc9ae62)
++++ b/game.hpp	(date 1738320288990)
+@@ -1,7 +1,10 @@
+ #include<iostream>
+ #include<vector>
+-
+-#include <iostream>
++#include <__random/random_device.h>
++#include "mob.hpp"
++#include "objects.hpp"
++#include "hero.hpp"
++#include <random>
+ 
+ enum class TypeCase {
+     EMPTY,
+@@ -46,7 +49,7 @@
+                         std::cout << '#';
+                     break;
+                     case TypeCase::STAIRS:
+-                        std::cout << '*';
++                        std::cout << '=';
+                     break;
+                     case TypeCase::HERO:
+                         std::cout << '@';
+@@ -64,16 +67,16 @@
+         }
+     }
+     void create_room(int row, int col, int height, int width) {
+-        for (int i = row; i < col + height; i++) {
+-            for (int j = col; j < row + width; j++) {
++        for (int i = row; i < row + height; i++) {
++            for (int j = col; j < col + width; j++) {
+                 board[i][j] = TypeCase::FLOR;
+             }
+         }
+-        for (int i = row; i < col + height; i++) {
++        for (int i = row; i < row + height + 1; i++) {
+             board[i][col] = TypeCase::VERTIWALL;
+             board[i][col + width] = TypeCase::VERTIWALL;
+         }
+-        for (int j = col; j < row + width + 1; j++) {
++        for (int j = col; j < col + width + 1; j++) {
+             board[row][j] = TypeCase::HORIWALL;
+             board[row + height][j] = TypeCase::HORIWALL;
+         }
+@@ -81,4 +84,19 @@
+     void place_hero(int row, int col) {
+         board[row][col] = TypeCase::HERO;
+     }
++    void place_hero(Hero hero) {
++        place_hero(hero.y, hero.x);
++    }
++    void place_mob(mob mob) {} // TODOOOOOOOOOOOO
++    TypeCase get_case(int row, int col) {
++        return board[row][col];
++    }
++    void random_room() {
++        int deb_row = rand() % (nb_rows-4);
++        int deb_col = rand() % (nb_cols-4);
++        int height = rand() % (nb_rows-4-deb_row);
++        int width = rand() % (nb_cols-4-deb_col);
++        create_room(deb_row, deb_col, height, width);
++    }
++
+ };
+\ No newline at end of file
+Index: objects.hpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <string>\n#include <iostream>\n\n\nstruct Object {\n\n\tint rarity;\n\tstd::string name;\n\tstd::string description;\n\n\tObject(int r, std::string n, std::string d) : rarity(r), name(n), description(d) {}\n\n\tvoid show() {\n\t\tstd::cout << \"> \";\n\t\tfor (int i = 0; i<rarity; i++) std::cout << '*';\n\t\tstd::cout << \" : \" << name << std::endl;\n\t}\n\n};\n\nstruct Weapon : public Object {\n\n};\n\nstruct Potion : public Object {\n\n\tPotion(int r, std::string name, std::string desc) : Object(r, name, desc) {}\n\t//Choses\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/objects.hpp b/objects.hpp
+--- a/objects.hpp	(revision 64c236e76fa2220b60864403d0b92db7cdc9ae62)
++++ b/objects.hpp	(date 1738318844310)
+@@ -1,7 +1,6 @@
+ #include <string>
+ #include <iostream>
+ 
+-
+ struct Object {
+ 
+ 	int rarity;
