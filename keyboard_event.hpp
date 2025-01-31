@@ -29,9 +29,3 @@ int keyEvent(){
     while(!bytesWaiting && ioctl(STDIN, FIONREAD, &bytesWaiting) >= 0){}
     return bytesWaiting;
 }
-
-void sleepOneLap(const int ms){
-  clock_t end;
-  end = clock() + ms * CLOCKS_PER_SEC / 1000;
-  while (clock() < end){}
-}
