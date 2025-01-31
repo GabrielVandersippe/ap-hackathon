@@ -17,17 +17,16 @@ int main(){
     board.initialize(&hero);
     board.print_board();
     while(game){
-        board.deplace_hero(hero);
-        board.print_board();
+        std::string message = "";
         std::cin >> input;
         if(input == 'p'){}
-        else if(input == 'z'){
+        else if(input == 's'){
             TypeCase _case = board.get_case(hero.y + 1, hero.x);
             if((_case==TypeCase::GROUND)||(_case==TypeCase::GATE)||(_case==TypeCase::CORRIDOR)||(_case==TypeCase::STAIRS)){
                 hero.y++;
             }
             else{
-                std::cout << "You try to walk into a wall and hurt your nose... (-1HP)" << std::endl;
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
                 hero.current_hp--;
             }
         }
@@ -36,23 +35,39 @@ int main(){
             if((_case==TypeCase::GROUND)||(_case==TypeCase::GATE)||(_case==TypeCase::CORRIDOR)||(_case==TypeCase::STAIRS)){
                 hero.x--;
             }
+            else{
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
+                hero.current_hp--;
+            }
         }
-        else if(input == 's'){
+        else if(input == 'z'){
             TypeCase _case = board.get_case(hero.y - 1, hero.x);
             if((_case==TypeCase::GROUND)||(_case==TypeCase::GATE)||(_case==TypeCase::CORRIDOR)||(_case==TypeCase::STAIRS)){
                 hero.y--;
+            }
+            else{
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
+                hero.current_hp--;
             }
         }
         else if(input == 'd'){
             TypeCase _case = board.get_case(hero.y, hero.x + 1);
             if((_case==TypeCase::GROUND)||(_case==TypeCase::GATE)||(_case==TypeCase::CORRIDOR)||(_case==TypeCase::STAIRS)){
                 hero.x++;
-            };
+            }
+            else{
+                message.append("You try to walk into a wall and hurt your nose... (-1HP)\n");
+                hero.current_hp--;
+            }
         }
 
         else if (input == 'i') {
             hero.showInventory();
         }
+        board.deplace_hero(hero);
+        board.print_board();
+        std::printf("%s", message.c_str());
+        
     }
     return EXIT_SUCCESS;
 }

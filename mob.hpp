@@ -1,12 +1,10 @@
 #pragma once
-int get_player_y();// TODOOOOOO
-int get_player_x();// TODOOOOOO
 
 struct position {
     int x; int y;
     position(int x, int y);
     friend position operator - (const position& p, const position& q);
-    bool friend alvaliable(const position& p);// TODOOOOOO
+    bool friend alvaliable(const position& p);
 };
 class mob {
 protected:
