@@ -1,12 +1,23 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "objects.hpp"
 
-class Inventory {
+struct Inventory {
 	
+	std::vector<Object> contents;
+	int max_size;
+
+	void showInventory() {
+		for (int i = 0; i < contents.size(); i++) {
+			contents[i].show();
+			std::cout << std::endl;
+		}
+	}
+
 };
 
-class Hero {
+struct Hero {
 
 	char symbol = '@';
 
