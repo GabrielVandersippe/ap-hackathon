@@ -19,7 +19,7 @@ protected:
     int get_y() const ;
 };
 
-//struct snake :mob {
+//class snake :mob {
 //    snake(int x, int y);
 //        //move
 //};

@@ -95,7 +95,7 @@ public:
         board[hero.y][hero.x] = TypeCase::HERO;
     } // actualise la position du hero
     void place_mob(mob mob) {} // TODOOOOOOOOOOOO
-    TypeCase get_case(int row, int col) {
+    TypeCase get_case(const int & row, const int & col) {
         return board[row][col];
     }
     void random_room() {
