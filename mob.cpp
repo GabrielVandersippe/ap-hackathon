@@ -3,6 +3,9 @@ position::position(int x, int y):x(x), y(y){};
 position operator -(const position& p, const position& q){
     return position (p.x-q.x, p.y-q.y);
 };
+/*bool alvaliable(const position& p){
+    return plateau[p.x][p.y]==
+}*/
 
 mob::mob(int x0, int y0, char symbol, int PV):x(x0), y(y0), symbol(symbol), PV(PV){}
 
