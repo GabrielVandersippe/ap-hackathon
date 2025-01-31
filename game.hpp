@@ -100,6 +100,7 @@ public:
         return board[row][col];
     }
     void random_room() {
+        srand(time(0));
         int deb_row = rand() % (nb_rows-4);
         int deb_col = rand() % (nb_cols-4);
         int height = 3 + rand() % (nb_rows-3-deb_row);
