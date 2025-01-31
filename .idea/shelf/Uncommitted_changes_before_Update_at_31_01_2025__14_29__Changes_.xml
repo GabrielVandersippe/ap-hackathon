@@ -1,0 +1,32 @@
+<changelist name="Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]" date="1738330270008" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 31/01/2025, 14:29 [Changes]" />
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/3.29.6/CMakeDetermineCompilerABI_C.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/CMakeDetermineCompilerABI_C.bin" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/3.29.6/CMakeDetermineCompilerABI_CXX.bin" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/CMakeDetermineCompilerABI_CXX.bin" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/3.29.6/CompilerIdCXX/CMakeCXXCompilerId.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/CMakeCXXCompilerId.o" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/ap_hackathon" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/ap_hackathon" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/3.29.6/CompilerIdC/CMakeCCompilerId.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/CMakeCCompilerId.o" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/ap_hackathon.dir/game.cpp.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/game.cpp.o" />
+  </binary>
+  <binary>
+    <option name="AFTER_PATH" value="cmake-build-debug/.ninja_deps" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_01_2025,_14_29_[Changes]/.ninja_deps" />
+  </binary>
+</changelist>
