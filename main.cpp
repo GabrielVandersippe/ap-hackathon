@@ -12,11 +12,10 @@ int main(){
     bool game = true;
     char input;
     Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
-    board.initialize();
-    board.random_room();
     //backgroundClear();
-    board.print_board();
     Hero hero("Brandon", 3, 3);
+    board.initialize(hero);
+    board.print_board();
     while(game){
         std::cin >> input;
         if(input == 'p'){}

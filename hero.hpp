@@ -42,8 +42,8 @@ public:
 	Inventory* inventory;
 
 	Hero(std::string name, int start_x, int start_y, int inv_max_size = 4) : name(name), current_hp(0), max_hp(5), x(start_x), y(start_y) {
-		// inventory->max_size = inv_max_size;
-		// inventory->add(Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2));
+		//inventory->max_size = inv_max_size;
+		//inventory->add(Weapon(1, (std::string)"Basic Dagger", (std::string)"A worn dagger.\n It is not suited for spreading butter, let alone slaying monsters", 2));
 	}
 
 	void consume(int id) {
@@ -52,7 +52,7 @@ public:
 		else {
 			/*obj->consume(this);*/
 			inventory->remove(id); //Faire compter cela comme une action et pas dans le cas o� on ne consomme rien
-			//Id�e: mettre la non-consommation comme effet de la fonction consume mais alors il faut faire savoir qu'on a rien fait.
+			//Idee: mettre la non-consommation comme effet de la fonction consume mais alors il faut faire savoir qu'on a rien fait.
 			
 		}
 	}
