@@ -94,8 +94,8 @@ public:
     void random_room() {
         int deb_row = rand() % (nb_rows-4);
         int deb_col = rand() % (nb_cols-4);
-        int height = rand() % (nb_rows-4-deb_row);
-        int width = rand() % (nb_cols-4-deb_col);
+        int height = 3 + rand() % (nb_rows-3-deb_row);
+        int width = 3 + rand() % (nb_cols-3-deb_col);
         create_room(deb_row, deb_col, height, width);
     }
 
