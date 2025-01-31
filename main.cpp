@@ -3,7 +3,7 @@
 
 /// Affichage
 const int SCREEN_WIDTH = 30;
-const int SCREEN_HEIGHT = 30;
+const int SCREEN_HEIGHT = 20;
 
 
 
@@ -12,7 +12,7 @@ int main(){
     char input;
     Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
     board.initialize();
-    board.create_room(2,2,4,5);
+    board.random_room();
     backgroundClear();
     board.print_board();
     Hero hero("Brandon", 3, 3);

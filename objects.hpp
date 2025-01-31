@@ -2,7 +2,6 @@
 #include <iostream>
 #include <random>
 
-
 struct Object {
 
 	int rarity;
