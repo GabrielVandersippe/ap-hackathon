@@ -2,10 +2,10 @@
 #include <string>
 #include "game.hpp"
 #include "hero.hpp"
+#include "InventoryManagment.hpp"
 /// Affichage
 const int SCREEN_WIDTH = 30;
 const int SCREEN_HEIGHT = 20;
-
 
 
 int main(){
@@ -20,6 +20,7 @@ int main(){
         std::cerr << "Failed to initialize snake." << std::endl;
     }
     board.add_room();
+    board.print_board();
     while(game){
         std::string message = "";
         std::cin >> input;
