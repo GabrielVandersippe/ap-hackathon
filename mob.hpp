@@ -19,7 +19,7 @@ protected:
     int get_y() const ;
 };
 
-//class snake :mob {
-//    snake(int x, int y);
-//        //move
-//};
+class snake:mob {
+    snake(int x, int y);
+    bool move();
+};
