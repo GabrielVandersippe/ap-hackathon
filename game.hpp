@@ -1,8 +1,6 @@
 #include<iostream>
 #include<vector>
-#include<hero.hpp>
-#include<keyboard_event.hpp>
-#include <__random/random_device.h>
+#include "keyboard_event.hpp"
 #include "mob.hpp"
 #include "objects.hpp"
 #include "hero.hpp"
