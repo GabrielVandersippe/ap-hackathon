@@ -14,9 +14,11 @@ int main(){
     Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
     //backgroundClear();
     Hero hero("Brandon", 3, 3);
-    board.initialize(hero);
+    board.initialize(&hero);
     board.print_board();
     while(game){
+        board.deplace_hero(hero);
+        board.print_board();
         std::cin >> input;
         if(input == 'p'){}
         else if(input == 'z'){
