@@ -14,7 +14,7 @@ int main(){
     Board board = Board(SCREEN_WIDTH, SCREEN_HEIGHT);
     board.initialize();
     board.random_room();
-    backgroundClear();
+    //backgroundClear();
     board.print_board();
     Hero hero("Brandon", 3, 3);
     while(game){
